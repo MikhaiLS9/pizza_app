@@ -13,3 +13,27 @@
   justify-content: center;
   gap: 30px;
 }
+
+.loading_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.spinner {
+  height: 100px;
+  width: 100px;
+  border: dashed 4px var(--primary-color);
+  border-radius: 100%;
+
+  margin: 0 auto;
+  animation: loading-spinner 2.5s linear infinite;
+}
+@keyframes loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.5);
+  }
+}
