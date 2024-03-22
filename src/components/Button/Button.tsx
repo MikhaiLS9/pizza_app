@@ -14,6 +14,7 @@ function Button({
       className={cn(styles.button, styles.accent, className, {
         [styles.small]: apperarence === "small",
         [styles.big]: apperarence === "big",
+        [styles.cart]: apperarence === "cart",
       })}
     >
       {children}

@@ -1,0 +1,79 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 832px;
+  border-right: 5px solid rgb(212, 214, 224);
+
+  padding: 30px;
+  height: 100%;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
+.user {
+  text-align: left;
+}
+
+.user_header {
+  color: var(--text-color);
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27px;
+  margin: 0;
+  margin-top: 17px;
+}
+
+.user_email {
+  color: rgb(158, 161, 177);
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.user_img {
+  width: 90px;
+  height: 90px;
+  box-shadow: 0 8px 40px 0 rgba(255, 197, 41, 0.25);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  gap: 35px;
+}
+
+.link {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.active {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.exit_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: auto;
+}
+
+
+.main {
+  width: 100%;
+}

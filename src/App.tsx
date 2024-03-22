@@ -1,12 +1,12 @@
-import Button from "./components/Button/Button";
-import Input from "./components/Input/Input";
-
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Menu } from "./pages/Menu/Menu";
 import { Cart } from "./pages/Cart/Car";
 import { Error } from "./pages/Error/Error";
-import { Layout } from "./layout/Menu/Menu";
+import { Layout } from "./layout/Menu/Layout";
+import Product from "./pages/Product/Product";
+import axios from "axios";
+import { PREFIX } from "./helpers/API";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,14 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/products/:id",
+        element: <Product />,
+        loader: async ({params}) => {
+          const {data} = await axios.get(`${PREFIX}/products/${params.id}`)
+          return data
+        }
+      },
     ],
   },
 
@@ -34,10 +42,6 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-
-      <Button apperarence="small">Button</Button>
-      <Button apperarence="big">Button</Button>
-      <Input placeholder="Email" />
     </>
   );
 }
