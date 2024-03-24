@@ -6,12 +6,19 @@ import UserImage from "../../assets/Intersect.png";
 import CartIcon from "../../assets/cart_layout.svg";
 import MenuIcon from "../../assets/menu-icon.svg";
 import ExitIcon from "../../assets/exit.svg";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 const setActive = ({ isActive }: { isActive: boolean }) =>
   isActive ? styles.active : styles.link;
 
 export function Layout() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("jwt");
+    navigate("/auth/login");
+  };
+  
   return (
     <>
       <div className={styles.sidebar}>
@@ -32,7 +39,11 @@ export function Layout() {
             </NavLink>
           </div>
         </aside>
-        <Button className={styles.exit_btn} apperarence="small">
+        <Button
+          className={styles.exit_btn}
+          apperarence="small"
+          onClick={logout}
+        >
           <img src={ExitIcon} alt="Exit" />
           Выйти
         </Button>

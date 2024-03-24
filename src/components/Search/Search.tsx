@@ -12,7 +12,7 @@ const Search = forwardRef<HTMLInputElement, SearchProps>(function Input(
     <div className={styles.input_wrapper}>
       <input
         ref={ref}
-        className={cn(styles["input"], className, {
+        className={cn(styles[className || ""], {
           [styles["invalid"]]: isValid,
         })}
         {...props}

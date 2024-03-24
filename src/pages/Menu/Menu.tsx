@@ -37,7 +37,7 @@ function Menu() {
     <>
       <div className={styles.menu}>
         <Headlin className="menu_headlin">Меню</Headlin>
-        <Search placeholder="Введите блюдо или состав" />
+        <Search className="input" placeholder="Введите блюдо или состав" />
       </div>
       {error && <>{error}</>}
 

@@ -8,14 +8,22 @@ import axios from "axios";
 import { PREFIX } from "./helpers/API";
 import { Suspense, lazy } from "react";
 import Headlin from "./components/Headlin/Headlin";
-// import Headlin from "./components/Headlin/Headlin";
+import AuthLayout from "./layout/Auth/AuthLayout";
+import Login from "./components/Login/Login";
+import Registration from "./components/Registration/Registration";
+import { RequireAuth } from "./helpers/ReciareAuth";
+
 
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <RequireAuth>
+        <Layout />
+      </RequireAuth>
+    ),
     children: [
       {
         path: "/",
@@ -32,7 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <Product />,
-        errorElement: <><Headlin>Ошибка загрузки, нет данных для загрузки. Не получается загрузить товары</Headlin></>,
+        errorElement: (
+          <>
+            <Headlin>
+              Ошибка загрузки, нет данных для загрузки. Не получается загрузить
+              товары
+            </Headlin>
+          </>
+        ),
         loader: async ({ params }) => {
           return defer({
             data: new Promise((resolve, reject) => {
@@ -48,7 +63,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "registration", element: <Registration /> },
+    ],
+  },
   {
     path: "*",
     element: <Error />,
