@@ -4,10 +4,11 @@ import Headlin from "../Headlin/Headlin";
 import Input from "../Input/Input";
 
 import styles from "./Login.module.css";
-import { FormEvent, useState } from "react";
-import axios, { AxiosError } from "axios";
-import { PREFIX } from "../../helpers/API";
-import { LoginResponse } from "../../interfaces/auth.interfaces";
+import { FormEvent, useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { login, userActions } from "../../store/userSlice";
+import { AppDispatch, RootState } from "../../store/store";
 
 export type LoginForm = {
   email: {
@@ -19,33 +20,29 @@ export type LoginForm = {
 };
 
 function Login() {
-  const [error, setError] = useState<string | null>();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const { jwt, userLoginMessage } = useSelector((s: RootState) => s.user);
+
+  useEffect(() => {
+    if (jwt) navigate("/");
+  }, [jwt, navigate]);
 
   const HandleLoginBtn = async (e: FormEvent) => {
     e.preventDefault();
-    setError(null);
+    dispatch(userActions.clearLoginError());
     const { email, password } = e.target as typeof e.target & LoginForm;
 
     await sendLoad(email.value, password.value);
   };
 
   const sendLoad = async (email: string, password: string) => {
-    try {
-      const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
-        email,
-        password,
-      });
-      localStorage.setItem('jwt', data.access_token)
-      navigate('/')
-    } catch (e) {
-      if (e instanceof AxiosError) setError(e.response?.data.message);
-    }
+    dispatch(login({ email, password }));
   };
   return (
     <div className={styles.container}>
       <Headlin className="login_headlin">Вход</Headlin>
-      {error && <div>{error}</div>}
+      {userLoginMessage && <div>{userLoginMessage}</div>}
       <form className={styles.form} onSubmit={HandleLoginBtn} action="">
         <div className={styles.field}>
           <label htmlFor="email">Ваш email</label>

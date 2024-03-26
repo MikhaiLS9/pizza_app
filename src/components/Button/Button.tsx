@@ -15,6 +15,7 @@ function Button({
         [styles.small]: apperarence === "small",
         [styles.big]: apperarence === "big",
         [styles.cart]: apperarence === "cart",
+        [styles.registration]: apperarence === "registration",
       })}
     >
       {children}

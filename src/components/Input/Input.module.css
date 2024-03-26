@@ -1,6 +1,5 @@
 .login_input {
-  max-width: 324.01px;
-  width: 100%;
+  width: 324.01px;
   height: 65px;
   border: 1px solid rgb(238, 238, 238);
   padding: 20px;
@@ -16,11 +15,9 @@
 
 .login_input::placeholder {
   color: rgb(196, 196, 196);
-  font-family: Open Sans;
   font-size: 17px;
   font-weight: 400;
   line-height: 23px;
-  letter-spacing: 0%;
   text-align: left;
 }
 

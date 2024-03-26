@@ -7,26 +7,37 @@ import CartIcon from "../../assets/cart_layout.svg";
 import MenuIcon from "../../assets/menu-icon.svg";
 import ExitIcon from "../../assets/exit.svg";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile, userActions } from "../../store/userSlice";
+import { AppDispatch, RootState } from "../../store/store";
+import { useEffect } from "react";
 
 const setActive = ({ isActive }: { isActive: boolean }) =>
   isActive ? styles.active : styles.link;
 
 export function Layout() {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, [dispatch]);
 
   const logout = () => {
-    localStorage.removeItem("jwt");
+    dispatch(userActions.logout());
     navigate("/auth/login");
   };
-  
+
+  const userProfile = useSelector((s: RootState) => s.user.profile);
+
   return (
     <>
       <div className={styles.sidebar}>
         <aside className={styles.aside}>
           <div className={styles.user}>
             <img className={styles.user_img} src={UserImage} alt="User" />
-            <h3 className={styles.user_header}>Misha</h3>
-            <p className={styles.user_email}>famm93@mail.ru</p>
+            <h3 className={styles.user_header}>{userProfile?.name}</h3>
+            <p className={styles.user_email}>{userProfile?.email}</p>
           </div>
           <div className={styles.menu}>
             <NavLink to="/" className={setActive}>
