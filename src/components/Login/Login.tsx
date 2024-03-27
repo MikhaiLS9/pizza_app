@@ -25,7 +25,7 @@ function Login() {
   const { jwt, userLoginMessage } = useSelector((s: RootState) => s.user);
 
   useEffect(() => {
-    if (jwt) navigate("/");
+    if (jwt) navigate("/pizza_app");
   }, [jwt, navigate]);
 
   const HandleLoginBtn = async (e: FormEvent) => {
@@ -66,7 +66,7 @@ function Login() {
         <Button apperarence="big">Вход</Button>
       </form>
 
-      <Link className={styles.link} to="/auth/registration">
+      <Link className={styles.link} to="/pizza_app/auth/registration">
         Нет акканута?
         <span className={styles.span}>Зарегистрироваться </span>
       </Link>

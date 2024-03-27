@@ -6,11 +6,19 @@ import CartImg from "../../assets/cart-icon.svg";
 import StarImg from "../../assets/Path 3389.svg";
 
 import styles from "./ProductCard.module.css";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { userCartAction } from "../../store/cartSlice";
 
 function ProductCard(props: ProductCardProps) {
+  const dispatch = useDispatch<AppDispatch>()
+
+  const handleAddCart = () => {
+    dispatch(userCartAction.add(props.id))
+  }
   return (
-    <Link to={`/products/${props.id}`}>
-      <div className={styles.product}>
+    <div className={styles.product}>
+      <Link to={`/products/${props.id}`}>
         <div className={styles.imageContainer}>
           <span className={styles.price}>
             {props.price} &nbsp;
@@ -22,16 +30,16 @@ function ProductCard(props: ProductCardProps) {
 
             <img className={styles.starImg} src={StarImg} alt="star" />
           </span>
-          <Button apperarence="cart">
-            <img className={styles.cart_img} src={CartImg} alt="cart" />
-          </Button>
         </div>
         <div className={styles.desckription}>
           <Headlin className="product_title">{props.name}</Headlin>
           <p className={styles.product_description}>{props.description}</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+      <Button onClick={ handleAddCart} apperarence="cart">
+        <img className={styles.cart_img} src={CartImg} alt="cart" />
+      </Button>
+    </div>
   );
 }
 

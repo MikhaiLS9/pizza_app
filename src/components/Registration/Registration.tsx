@@ -84,7 +84,7 @@ function Registration() {
         </Button>
       </form>
 
-      <Link className={styles.link} to="/auth/login">
+      <Link className={styles.link} to="/pizza_app/auth/login">
         Есть акканут?
         <span className={styles.span}>Войти </span>
       </Link>

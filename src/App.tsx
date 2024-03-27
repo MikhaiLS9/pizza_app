@@ -13,11 +13,19 @@ import Login from "./components/Login/Login";
 import Registration from "./components/Registration/Registration";
 import { RequireAuth } from "./helpers/ReciareAuth";
 import { Provider } from "react-redux";
-import {store} from './store/store.ts'
+import { store } from "./store/store.ts";
 
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 
 const router = createBrowserRouter([
+  // {
+  //   path: "/",
+  //   element: <AuthLayout />,
+  //   children: [
+  //     { path: "pizza_app/auth/login", element: <Login /> },
+  //     { path: "pizza_app/auth/registration", element: <Registration /> },
+  //   ],
+  // },
   {
     path: "/",
     element: (
@@ -27,7 +35,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/",
+        path: "/pizza_app",
         element: (
           <Suspense fallback={"Загружаю ...."}>
             <Menu />
@@ -35,7 +43,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/cart",
+        path: "/pizza_app/cart",
         element: <Cart />,
       },
       {
@@ -65,7 +73,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "auth",
+    path: "/pizza_app/auth",
     element: <AuthLayout />,
     children: [
       { path: "login", element: <Login /> },

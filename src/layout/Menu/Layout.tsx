@@ -18,6 +18,12 @@ const setActive = ({ isActive }: { isActive: boolean }) =>
 export function Layout() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const productCartItems = useSelector((s: RootState) => s.cart.items);
+
+  const productCountCartItems = productCartItems.reduce(
+    (acc, item) => (acc += item.count),
+    0
+  );
 
   useEffect(() => {
     dispatch(getUserProfile());
@@ -25,7 +31,7 @@ export function Layout() {
 
   const logout = () => {
     dispatch(userActions.logout());
-    navigate("/auth/login");
+    navigate("/pizza_app/auth/login");
   };
 
   const userProfile = useSelector((s: RootState) => s.user.profile);
@@ -40,13 +46,18 @@ export function Layout() {
             <p className={styles.user_email}>{userProfile?.email}</p>
           </div>
           <div className={styles.menu}>
-            <NavLink to="/" className={setActive}>
+            <NavLink to="/pizza_app" className={setActive}>
               <img src={MenuIcon} alt="Menu" />
               Меню
             </NavLink>
-            <NavLink className={setActive} to="/cart">
+            <NavLink className={setActive} to="/pizza_app/cart">
               <img src={CartIcon} alt="Cart" />
-              Корзина
+              Корзина{" "}
+              {productCountCartItems > 0 ? (
+                <span>{productCountCartItems}</span>
+              ) : (
+                ""
+              )}
             </NavLink>
           </div>
         </aside>
