@@ -1,7 +1,7 @@
 export interface Product {
 	id: number
 	name: string
-	price: number
+	price: number 
 	ingredients: string[]
 	image: string
 	rating: number
