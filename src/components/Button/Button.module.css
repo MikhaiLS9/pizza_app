@@ -20,7 +20,7 @@
   width: 100%;
   font-size: 15px;
   text-transform: uppercase;
-  padding: 20px 60px;
+  text-align: center;
   box-shadow: 0px 10px 40px 0px rgba(122, 129, 190, 0.16);
 
   font-size: 15px;
@@ -61,4 +61,56 @@
   text-align: center;
 
   margin-top: 25px;
+}
+
+.decrement {
+  box-sizing: border-box;
+  border: 1px solid rgb(254, 114, 76);
+  border-radius: 17px;
+  background: none;
+  box-shadow: 0px 20px 30px 0px rgb(238, 240, 242);
+
+  width: 28.28px;
+  height: 28.28px;
+}
+
+.increment {
+  width: 28.28px;
+  height: 28.28px;
+  border-radius: 17px;
+
+  box-shadow: 0px 7px 15px 0px rgba(254, 114, 76, 0.4);
+  background: rgb(254, 114, 76);
+}
+
+.delete_item {
+  width: 28.28px;
+  height: 28.28px;
+  background: none;
+}
+
+.clear_cart {
+  box-sizing: border-box;
+  border: 1px solid rgb(254, 114, 76);
+  border-radius: 17px;
+  background: none;
+  box-shadow: 0px 20px 30px 0px rgb(238, 240, 242);
+
+  width: 40px;
+  height: 40px;
+}
+
+.promo {
+  font-size: 16px;
+  padding: 10px 25px;
+  right: 0;
+  position: absolute;
+}
+
+.back_menu {
+  width: 38px;
+  height: 38px;
+
+  box-shadow: 5px 10px 20px 0px rgba(211, 209, 216, 0.3);
+  background: rgb(255, 255, 255);
 }

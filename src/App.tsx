@@ -14,6 +14,7 @@ import Registration from "./components/Registration/Registration";
 import { RequireAuth } from "./helpers/ReciareAuth";
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
+import Success from "./pages/Success/Success.tsx";
 
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/pizza_app/cart",
         element: <Cart />,
+      },
+      {
+        path: "/pizza_app/success",
+        element: <Success />,
       },
       {
         path: "/products/:id",
@@ -80,6 +85,7 @@ const router = createBrowserRouter([
       { path: "registration", element: <Registration /> },
     ],
   },
+  
   {
     path: "*",
     element: <Error />,

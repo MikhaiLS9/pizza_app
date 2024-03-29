@@ -23,27 +23,38 @@ function CartItem(props: CartItemProps) {
     dispatch(userCartAction.clearItem(id));
   };
 
-  
   return (
     <div className={styles.cart_items}>
       <div className={styles.item}>
-        <img src={image} alt="товар" />
-        <div>
-          <h3>{name}</h3>
-          <p>{price}</p>
+        <img className={styles.img_items} src={image} alt="товар" />
+        <div className={styles.title}>
+          <h3 className={styles.name}>{name}</h3>
+          <p className={styles.price}>{price} ₽</p>
         </div>
       </div>
 
       <div className={styles.change}>
-        <Button apperarence="small" onClick={decrement}>
-          <img src={decrementImg} alt="delete" />
+        <Button apperarence="decrement" onClick={decrement}>
+          <img
+            className={`${styles.img_button} ${styles.decrement}`}
+            src={decrementImg}
+            alt="minus"
+          />
         </Button>
         <span>{count}</span>
-        <Button apperarence="small" onClick={increment}>
-          <img src={IncrementImg} alt="plus" />
+        <Button apperarence="increment" onClick={increment}>
+          <img
+            className={`${styles.img_button} ${styles.increment}`}
+            src={IncrementImg}
+            alt="plus"
+          />
         </Button>
-        <Button apperarence="small" onClick={clear}>
-          <img src={cleartImg} alt="delete" />
+        <Button apperarence="delete_item" onClick={clear}>
+          <img
+            className={`${styles.img_button} ${styles.delete_item}`}
+            src={cleartImg}
+            alt="delete"
+          />
         </Button>
       </div>
     </div>

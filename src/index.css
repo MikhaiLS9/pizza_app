@@ -12,6 +12,9 @@ a {
   color: var(--text-color);
   text-decoration: dashed;
 }
+img {
+  object-fit: cover;
+}
 :root {
   --font: "Open Sans", sans-serif;
   --primary-color: #fe724c;
@@ -20,9 +23,9 @@ a {
   --text-secondary-color: #5b5b5e;
   --body-text-color: #ffffff;
   --separator-color: #d4d6e0;
+  --line-color: #d4d6e0;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
-  margin: 0;
 }

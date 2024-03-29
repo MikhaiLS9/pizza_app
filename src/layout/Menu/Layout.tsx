@@ -10,7 +10,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile, userActions } from "../../store/userSlice";
 import { AppDispatch, RootState } from "../../store/store";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const setActive = ({ isActive }: { isActive: boolean }) =>
   isActive ? styles.active : styles.link;
@@ -20,16 +20,15 @@ export function Layout() {
   const dispatch = useDispatch<AppDispatch>();
   const productCartItems = useSelector((s: RootState) => s.cart.items);
 
-  const productCountCartItems = productCartItems.reduce(
-    (acc, item) => (acc += item.count),
-    0
-  );
+  const productCountCartItems = useMemo(() => {
+    return productCartItems.reduce((acc, item) => acc + item.count, 0);
+  }, [productCartItems]);
 
   useEffect(() => {
     dispatch(getUserProfile());
   }, [dispatch]);
 
-  const logout = () => {
+  const logout = async () => { 
     dispatch(userActions.logout());
     navigate("/pizza_app/auth/login");
   };
@@ -54,7 +53,9 @@ export function Layout() {
               <img src={CartIcon} alt="Cart" />
               Корзина{" "}
               {productCountCartItems > 0 ? (
-                <span>{productCountCartItems}</span>
+                <span className={productCountCartItems > 0 ? styles.count : ""}>
+                  {productCountCartItems}
+                </span>
               ) : (
                 ""
               )}
