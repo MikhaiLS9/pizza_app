@@ -1,7 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button/Button";
-import Headlin from "../../components/Headlin/Headlin";
-import Input from "../../components/Input/Input";
 import { AppDispatch, RootState } from "../../store/store";
 import CartItem from "../../components/CartItem/CartItem";
 import axios from "axios";
@@ -10,13 +9,17 @@ import { Product } from "../../interfaces/product.interfaces";
 import { useEffect, useState } from "react";
 import { userCartAction } from "../../store/cartSlice";
 import cleartImg from "../../assets/shopping_cart_empty_side_view_daeiai8dloaf.svg";
-
+import ProductMissing from "../../layout/components/ProductMissing/ProductMissing";
 import styles from "./Cart.module.css";
 import { useNavigate } from "react-router-dom";
+import FormToCart from "../../layout/components/FormToCart/FormToCart";
+import Headline from "../../layout/components/Headline/Headline";
 
-const DELIVERE_FEE = 150;
+const DELIVERY_FEE = 150;
+const SALE15 = 0.85;
 
 export function Cart() {
+  const [isPromoApplied, setIsPromoApplied] = useState(false);
   const [cartProducts, setCardProducts] = useState<Product[]>([]);
   const items = useSelector((s: RootState) => s.cart.items);
   const jwt = useSelector((s: RootState) => s.user.jwt);
@@ -25,6 +28,7 @@ export function Cart() {
   useEffect(() => {
     loadItems();
   }, [items]);
+
   const getItem = async (id: number) => {
     const { data } = await axios.get<Product>(`${PREFIX}/products/${id}`);
 
@@ -67,14 +71,19 @@ export function Cart() {
     navigate("/pizza_app/success");
   };
 
-  const backToMenu = () => {
-    navigate("/pizza_app");
+  const handlePromoApply = (isValid: boolean) => {
+    setIsPromoApplied(isValid);
   };
+  const finalTotal = isPromoApplied
+    ? (DELIVERY_FEE + productsOnOrder) * SALE15
+    : DELIVERY_FEE + productsOnOrder;
+
+  console.log(isPromoApplied);
 
   return (
     <div className={styles.container}>
-      <Headlin>Корзина</Headlin>
-      <Button apperarence="clear_cart" onClick={clearFullCart}>
+      <Headline>Корзина</Headline>
+      <Button appearance="clear_cart" onClick={clearFullCart}>
         <img src={cleartImg} alt="delete" />
       </Button>
       {productsWithCount.map((p, index) => (
@@ -91,10 +100,7 @@ export function Cart() {
 
       {items.length > 0 ? (
         <div className={styles.block}>
-          <form className={styles.form} action="">
-            <Input className="promo" placeholder="Промокод" />
-            <Button apperarence="promo">Применить</Button>
-          </form>
+          <FormToCart onPromoApply={handlePromoApply} />
           <div className={styles.checkout_result}>
             <div className={styles.result}>
               <p>
@@ -109,30 +115,35 @@ export function Cart() {
               <p>Доставка</p>
 
               <span className={styles.text}>
-                {DELIVERE_FEE} <span className={styles.mark}>₽</span>
+                {DELIVERY_FEE} <span className={styles.mark}>₽</span>
               </span>
             </div>
             <hr />
             <div className={styles.result}>
               <p>Итог: </p>
-              <span className={styles.text}>
-                {DELIVERE_FEE + productsOnOrder}{" "}
-                <span className={styles.mark}>₽</span>
-              </span>
+              {!isPromoApplied ? (
+                <>
+                  {" "}
+                  <span className={styles.text}>
+                    {DELIVERY_FEE + productsOnOrder}{" "}
+                    <span className={styles.mark}>₽</span>
+                  </span>
+                </>
+              ) : (
+                <span className={styles.text}>
+                  Промокод применен : {finalTotal}{" "}
+                  <span className={styles.mark}>₽</span>
+                </span>
+              )}
             </div>
             <hr />
           </div>
-          <Button onClick={success} apperarence="big">
+          <Button onClick={success} appearance="big">
             Оформить
           </Button>
         </div>
       ) : (
-        <div>
-          <Headlin>Добавьте товар в корзину </Headlin>
-          <Button apperarence="big" onClick={backToMenu}>
-            Добавить
-          </Button>
-        </div>
+        <ProductMissing />
       )}
     </div>
   );

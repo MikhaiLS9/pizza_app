@@ -25,5 +25,19 @@
   position: relative;
   flex-grow: 1;
   border-radius: 10px 20px 20px 10px;
-  height: 42px;
+  height: 41px;
+  padding-left: 15px;
+}
+
+.promo_false{
+  position: relative;
+  flex-grow: 1;
+  border-radius: 10px 20px 20px 10px;
+  height: 41px;
+  padding-left: 15px;
+  background: rgb(192, 54, 54)
+}
+
+.promo_false::placeholder{
+  color: aliceblue;
 }

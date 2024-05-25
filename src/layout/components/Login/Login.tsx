@@ -1,14 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
-import Headlin from "../Headlin/Headlin";
-import Input from "../Input/Input";
-
 import styles from "./Login.module.css";
 import { FormEvent, useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import { login, userActions } from "../../store/userSlice";
-import { AppDispatch, RootState } from "../../store/store";
+import Headline from "../Headline/Headline";
+import { AppDispatch, RootState } from "../../../store/store";
+import { login, userActions } from "../../../store/userSlice";
+import Input from "../../../components/Input/Input";
+import Button from "../../../components/Button/Button";
 
 export type LoginForm = {
   email: {
@@ -41,7 +39,7 @@ function Login() {
   };
   return (
     <div className={styles.container}>
-      <Headlin className="login_headlin">Вход</Headlin>
+      <Headline className="login">Вход</Headline>
       {userLoginMessage && <div>{userLoginMessage}</div>}
       <form className={styles.form} onSubmit={HandleLoginBtn} action="">
         <div className={styles.field}>
@@ -63,11 +61,11 @@ function Login() {
           />
         </div>
 
-        <Button apperarence="big">Вход</Button>
+        <Button appearance="big">Вход</Button>
       </form>
 
       <Link className={styles.link} to="/pizza_app/auth/registration">
-        Нет акканута?
+        Нет аккаунта?
         <span className={styles.span}>Зарегистрироваться </span>
       </Link>
     </div>

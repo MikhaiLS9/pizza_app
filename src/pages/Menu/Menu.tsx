@@ -1,11 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import Headlin from "../../components/Headlin/Headlin";
+
 import Search from "../../components/Search/Search";
 import { PREFIX } from "../../helpers/API";
 import { Product } from "../../interfaces/product.interfaces";
 import styles from "./Menu.module.css";
 import axios from "axios";
 import MenuList from "./MenuList/MenuList";
+import Headline from "../../layout/components/Headline/Headline";
 
 function Menu() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -38,7 +39,7 @@ function Menu() {
   return (
     <>
       <div className={styles.menu}>
-        <Headlin className="menu_headlin">Меню</Headlin>
+        <Headline className="menu_headline">Меню</Headline>
         <Search
           onChange={serchItemProduct}
           className="input"
@@ -52,13 +53,13 @@ function Menu() {
       </div>
       {isLoading && (
         <div className={styles.loading_wrapper}>
-          <Headlin>Загружаем продукты...</Headlin>
+          <Headline>Загружаем продукты...</Headline>
           <div className={styles.spinner}></div>
         </div>
       )}
       {!isLoading && products.length === 0 && (
         <div className={styles.loading_wrapper}>
-          <Headlin>Товар не найден по запросу</Headlin>
+          <Headline>Товар не найден по запросу</Headline>
           <div className={styles.spinner}></div>
         </div>
       )}

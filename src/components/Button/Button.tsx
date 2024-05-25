@@ -5,23 +5,23 @@ import cn from "classnames";
 function Button({
   children,
   className,
-  apperarence = "small",
+  appearance: appearance = "small",
   ...props
 }: ButtonProps) {
   return (
     <button
       {...props}
       className={cn(styles.button, styles.accent, className, {
-        [styles.small]: apperarence === "small",
-        [styles.big]: apperarence === "big",
-        [styles.cart]: apperarence === "cart",
-        [styles.registration]: apperarence === "registration",
-        [styles.increment]: apperarence === "increment",
-        [styles.decrement]: apperarence === "decrement",
-        [styles.delete_item]: apperarence === "delete_item",
-        [styles.clear_cart]: apperarence === "clear_cart",
-        [styles.promo]: apperarence === "promo",
-        [styles.back_menu]: apperarence === "back_menu",
+        [styles.small]: appearance === "small",
+        [styles.big]: appearance === "big",
+        [styles.cart]: appearance === "cart",
+        [styles.registration]: appearance === "registration",
+        [styles.increment]: appearance === "increment",
+        [styles.decrement]: appearance === "decrement",
+        [styles.delete_item]: appearance === "delete_item",
+        [styles.clear_cart]: appearance === "clear_cart",
+        [styles.promo]: appearance === "promo",
+        [styles.back_menu]: appearance === "back_menu",
       })}
     >
       {children}

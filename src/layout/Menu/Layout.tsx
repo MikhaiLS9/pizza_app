@@ -1,5 +1,3 @@
-// Layout.jsx
-
 import styles from "./Layout.module.css";
 import Button from "../../components/Button/Button";
 import UserImage from "../../assets/Intersect.png";
@@ -64,7 +62,7 @@ export function Layout() {
         </aside>
         <Button
           className={styles.exit_btn}
-          apperarence="small"
+          appearance="small"
           onClick={logout}
         >
           <img src={ExitIcon} alt="Exit" />

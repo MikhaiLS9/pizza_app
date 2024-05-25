@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom";
-import Headlin from "../Headlin/Headlin";
 import { ProductCardProps } from "./ProductCard.props";
-import Button from "../Button/Button";
+import Button from "../../../components/Button/Button";
 import CartImg from "../../assets/cart-icon.svg";
 import StarImg from "../../assets/Path 3389.svg";
-
 import styles from "./ProductCard.module.css";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
-import { userCartAction } from "../../store/cartSlice";
+import { AppDispatch } from "../../../store/store";
+import { userCartAction } from "../../../store/cartSlice";
+import Headline from "../Headline/Headline";
 
 function ProductCard(props: ProductCardProps) {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleAddCart = () => {
-    dispatch(userCartAction.add(props.id))
-  }
+    dispatch(userCartAction.add(props.id));
+  };
   return (
     <div className={styles.product}>
       <Link to={`/products/${props.id}`}>
@@ -31,12 +30,12 @@ function ProductCard(props: ProductCardProps) {
             <img className={styles.starImg} src={StarImg} alt="star" />
           </span>
         </div>
-        <div className={styles.desckription}>
-          <Headlin className="product_title">{props.name}</Headlin>
+        <div className={styles.description}>
+          <Headline className="product_title">{props.name}</Headline>
           <p className={styles.product_description}>{props.description}</p>
         </div>
       </Link>
-      <Button onClick={ handleAddCart} apperarence="cart">
+      <Button onClick={handleAddCart} appearance="cart">
         <img className={styles.cart_img} src={CartImg} alt="cart" />
       </Button>
     </div>

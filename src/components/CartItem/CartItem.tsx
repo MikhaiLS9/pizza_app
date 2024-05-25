@@ -34,7 +34,7 @@ function CartItem(props: CartItemProps) {
       </div>
 
       <div className={styles.change}>
-        <Button apperarence="decrement" onClick={decrement}>
+        <Button appearance="decrement" onClick={decrement}>
           <img
             className={`${styles.img_button} ${styles.decrement}`}
             src={decrementImg}
@@ -42,14 +42,14 @@ function CartItem(props: CartItemProps) {
           />
         </Button>
         <span>{count}</span>
-        <Button apperarence="increment" onClick={increment}>
+        <Button appearance="increment" onClick={increment}>
           <img
             className={`${styles.img_button} ${styles.increment}`}
             src={IncrementImg}
             alt="plus"
           />
         </Button>
-        <Button apperarence="delete_item" onClick={clear}>
+        <Button appearance="delete_item" onClick={clear}>
           <img
             className={`${styles.img_button} ${styles.delete_item}`}
             src={cleartImg}

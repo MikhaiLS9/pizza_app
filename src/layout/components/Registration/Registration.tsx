@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
-import Headlin from "../Headlin/Headlin";
-import Input from "../Input/Input";
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Input/Input";
 import styles from "../Login/Login.module.css";
 import { FormEvent, useEffect } from "react";
-import { registration, userActions } from "../../store/userSlice";
+import { registration, userActions } from "../../../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../../store/store";
+import Headline from "../Headline/Headline";
 
 export type RegistrationForm = {
   email: {
@@ -47,7 +47,7 @@ function Registration() {
 
   return (
     <div className={styles.container}>
-      <Headlin className="login_headlin">Регистрация</Headlin>
+      <Headline className="login_headline">Регистрация</Headline>
       {userRegistrationMessage && <div>{userRegistrationMessage}</div>}
       <form className={styles.form} onSubmit={HandleLoginBtn} action="">
         <div className={styles.field}>
@@ -79,7 +79,7 @@ function Registration() {
           />
         </div>
 
-        <Button apperarence="registration" className="registration">
+        <Button appearance="registration" className="registration">
           Зарегистрироваться
         </Button>
       </form>

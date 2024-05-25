@@ -1,4 +1,4 @@
-import ProductCard from "../../../components/ProductCard/ProductCard";
+import ProductCard from "../../../layout/components/ProductCard/ProductCard";
 import { MenuListProps } from "./MenuList.props";
 function MenuList({ products }: MenuListProps) {
   return (

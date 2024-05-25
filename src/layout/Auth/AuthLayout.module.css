@@ -22,3 +22,11 @@
   max-height: 273.69px;
   width: 100%;
 }
+@media (max-width: 600px) {
+  .logo {
+    display: none;
+  }
+  .login{
+    border: none;
+  }
+}

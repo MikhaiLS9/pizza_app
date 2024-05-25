@@ -72,9 +72,6 @@
     flex-wrap: nowrap;
     border-bottom: 2px solid var(--line-color);
   }
-  .item{
-    justify-content: center
-  }
 
   .change {
     justify-content: center;

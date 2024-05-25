@@ -7,14 +7,16 @@ import Product from "./pages/Product/Product";
 import axios from "axios";
 import { PREFIX } from "./helpers/API";
 import { Suspense, lazy } from "react";
-import Headlin from "./components/Headlin/Headlin";
+
 import AuthLayout from "./layout/Auth/AuthLayout";
-import Login from "./components/Login/Login";
-import Registration from "./components/Registration/Registration";
+
 import { RequireAuth } from "./helpers/ReciareAuth";
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
 import Success from "./pages/Success/Success.tsx";
+import Headline from "./layout/components/Headline/Headline.tsx";
+import Login from "./layout/components/Login/Login.tsx";
+import Registration from "./layout/components/Registration/Registration.tsx";
 
 const Menu = lazy(() => import("./pages/Menu/Menu"));
 
@@ -56,10 +58,10 @@ const router = createBrowserRouter([
         element: <Product />,
         errorElement: (
           <>
-            <Headlin>
+            <Headline>
               Ошибка загрузки, нет данных для загрузки. Не получается загрузить
               товары
-            </Headlin>
+            </Headline>
           </>
         ),
         loader: async ({ params }) => {
